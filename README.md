@@ -88,7 +88,6 @@ secure_student_records/
     test_crypto.py             Unit tests for crypto_utils
     test_records_and_db.py    Integration tests for records/auth/database
     demo_evidence.py          Evidence-generation script (not a unit test)
-  diagrams/                   Source files (Mermaid + SVG) for the design diagrams
   screenshots/                Application screenshots used in the project report
   .devcontainer/              GitHub Codespaces configuration (GUI support via noVNC)
 ```
