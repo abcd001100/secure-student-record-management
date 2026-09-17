@@ -1,0 +1,10 @@
+# Generated at runtime -- never commit these (keystore.json holds the
+# wrapped Data Encryption Key; students.db holds encrypted student data
+# and the audit log from whoever last ran the app).
+students.db
+keystore.json
+
+__pycache__/
+*.pyc
+.venv/
+venv/
