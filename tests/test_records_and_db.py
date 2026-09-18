@@ -173,6 +173,19 @@ class AuthenticationTests(unittest.TestCase):
         with self.assertRaises(validators.ValidationError):
             auth.create_user(self.db, "dave", "weak", "staff")
 
+    def test_username_with_surrounding_whitespace_can_log_in(self):
+        """Regression test: create_user() must store the *validated*
+        (trimmed) username, not the raw argument, or an account created
+        with an accidental leading/trailing space becomes permanently
+        unable to log in -- every login lookup strips its input first,
+        so an un-trimmed stored username can never match again."""
+        auth.create_user(self.db, "  erin2 ", "GoodPass123", "staff")
+        stored = self.db.get_user("erin2")
+        self.assertIsNotNone(stored)
+        self.assertEqual(stored.username, "erin2")
+        session = auth.login(self.db, "erin2", "GoodPass123")
+        self.assertEqual(session.username, "erin2")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

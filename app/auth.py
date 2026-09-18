@@ -72,7 +72,14 @@ def require_admin(session: Session) -> None:
 
 def create_user(db: Database, username: str, password: str, role: str) -> None:
     from . import validators
-    validators.validate_username(username)
+    # validate_username() trims surrounding whitespace as part of
+    # validation; its return value MUST be what gets stored, not the
+    # raw argument -- otherwise an account created with an accidental
+    # leading/trailing space is stored un-trimmed while login() always
+    # strips its input before looking the account up, so the account
+    # becomes permanently unable to log in with any input the user
+    # could actually type.
+    username = validators.validate_username(username)
     validators.validate_password_strength(password)
     if role not in ("admin", "staff"):
         raise ValueError("role must be 'admin' or 'staff'")

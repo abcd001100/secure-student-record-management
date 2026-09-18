@@ -55,10 +55,10 @@ Codespace, wait for the container to finish building, then:
 python -m unittest discover -s tests -v
 ```
 
-31 tests covering password hashing, envelope-key wrap/unwrap,
+32 tests covering password hashing, envelope-key wrap/unwrap,
 corrupted-input handling, AES-GCM correctness and negative cases,
-CRUD, validation, and authentication/RBAC including account lockout
-and reactivation.
+CRUD, validation, authentication/RBAC including account lockout and
+reactivation, and username normalisation at account creation.
 
 ## Generating fresh cryptographic evidence
 
@@ -88,7 +88,6 @@ secure_student_records/
     test_crypto.py             Unit tests for crypto_utils
     test_records_and_db.py    Integration tests for records/auth/database
     demo_evidence.py          Evidence-generation script (not a unit test)
-  diagrams/                   Source files (Mermaid + SVG) for the design diagrams
-  screenshots/                Application screenshots used in the project report
+  screenshots/                Application and design-diagram figures used in the project report
   .devcontainer/              GitHub Codespaces configuration (GUI support via noVNC)
 ```
